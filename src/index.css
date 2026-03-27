@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+  background-color: #FAFAF5;
+  color: #2A2520;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+
+  /* Organic blob clip for images */
+  .blob-clip {
+    border-radius: 62% 38% 55% 45% / 42% 58% 44% 56%;
+  }
+
+  /* Gold text glow */
+  .text-glow-gold {
+    text-shadow: 0 0 80px rgba(232, 184, 114, 0.40);
+  }
+
+  /* Marine glow */
+  .marine-glow {
+    box-shadow: 0 0 60px rgba(46, 122, 143, 0.18);
+  }
+
+  /* Section flow divider */
+  .section-wave {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom right, transparent 49%, #FAFAF5 50%);
+  }
+}
