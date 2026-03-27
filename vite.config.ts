@@ -69,16 +69,17 @@ export default defineConfig({
   build: {
     sourcemap: true,
     outDir: "dist",
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          router: ["react-router-dom"],
-          gsap: ["gsap"],
-          firebase: ["firebase"],
-          supabase: ["@supabase/supabase-js"],
-          charts: ["recharts"],
+        manualChunks(id) {
+          if (id.includes("node_modules/react-dom")) return "react-dom";
+          if (id.includes("node_modules/react/")) return "react";
+          if (id.includes("node_modules/react-router-dom") || id.includes("node_modules/react-router/")) return "router";
+          if (id.includes("node_modules/gsap")) return "gsap";
+          if (id.includes("node_modules/@supabase")) return "supabase";
+          if (id.includes("node_modules/recharts")) return "charts";
+          if (id.includes("node_modules/firebase")) return "firebase";
         },
       },
     },
