@@ -5,7 +5,7 @@ import AutoImport from "unplugin-auto-import/vite";
 
 const base = process.env.BASE_PATH || "/";
 const isPreview = process.env.IS_PREVIEW ? true : false;
-// https://vite.dev/config/
+
 export default defineConfig({
   define: {
     __BASE_PATH__: JSON.stringify(base),
@@ -58,7 +58,6 @@ export default defineConfig({
             "Outlet",
           ],
         },
-        // React i18n
         {
           "react-i18next": ["useTranslation", "Trans"],
         },
@@ -69,7 +68,20 @@ export default defineConfig({
   base,
   build: {
     sourcemap: true,
-    outDir: "out",
+    outDir: "dist",
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          router: ["react-router-dom"],
+          gsap: ["gsap"],
+          firebase: ["firebase"],
+          supabase: ["@supabase/supabase-js"],
+          charts: ["recharts"],
+        },
+      },
+    },
   },
   resolve: {
     alias: {
